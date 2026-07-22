@@ -1,184 +1,186 @@
-📊 Pré-Processamento da Base de Churn de Telecom
+# Telecom Churn Preprocessing
 
-Aluno: Henry
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
+![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-lightblue)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Ready-success)
+![Language](https://img.shields.io/badge/Language-EN%20%7C%20PT--BR-blue)
 
-📌 Sumário
+---
 
-🔹 Proposta da Atividade
+## Tech Stack | Tecnologias Utilizadas
 
-1️⃣ Objetivo
+**EN**
+- Jupyter Notebook
+- Python
+- Pandas
+- Matplotlib
+- Seaborn
 
-2️⃣ Bibliotecas utilizadas
+**PT-BR**
+- Jupyter Notebook
+- Python
+- Pandas para manipulacao e analise de dados
+- Matplotlib para visualizacao
+- Seaborn para graficos estatisticos
 
-3️⃣ Carregamento da base e ajustes iniciais
+---
 
-4️⃣ Verificação de valores faltantes
+## Executive Summary | Resumo Executivo
 
-5️⃣ Tratamento de valores faltantes
+**EN**
 
-6️⃣ Visualizações após tratamento
+Data preprocessing, customer churn and feature preparation. This project was organized as a portfolio-ready case study: it explains the objective, the analytical path, the visual evidence and the practical interpretation behind the result.
 
-7️⃣ Padronização de valores inconsistentes
+Main objective: Clean and structure telecom churn data so it is ready for modeling and business analysis.
 
-8️⃣ Renomeação de colunas
+**PT-BR**
 
-9️⃣ Conferência final
+Pre-processamento de dados, churn de clientes e preparacao de atributos. Este projeto foi organizado como um estudo de caso pronto para portfolio: explica o objetivo, o caminho analitico, as evidencias visuais e a interpretacao pratica por tras do resultado.
 
-🔟 Observações finais
+Objetivo principal: Limpar e estruturar dados de churn em telecom para deixar a base pronta para modelagem e analise de negocio.
 
-🔹 Proposta da Atividade
+---
 
-Aplicação de pré-processamento de dados em uma base de churn de clientes de telecomunicações, preparando os dados para análise exploratória e modelagem preditiva.
+## Project Workflow | Fluxo do Projeto
 
-Técnicas aplicadas:
+**EN**
+- Define the business or analytical question.
+- Prepare, clean and structure the available data or inputs.
+- Explore patterns through tables, metrics and visualizations.
+- Apply statistical logic, SQL, machine learning or application rules when relevant.
+- Translate the output into insights, limitations and next steps.
 
-🛠️ Técnica	🎯 Objetivo
-Limpeza de dados	Remover inconsistências e valores inválidos
-Tratamento de valores faltantes	Substituição por mediana/moda ou exclusão de linhas essenciais
-Padronização de variáveis categóricas	Garantir uniformidade e consistência
-Renomeação de colunas	Facilitar leitura e interpretação
-Visualizações	Identificar padrões, outliers e distribuição de dados
+**PT-BR**
+- Definir a pergunta de negocio ou de analise.
+- Preparar, limpar e estruturar os dados ou entradas disponiveis.
+- Explorar padroes por meio de tabelas, metricas e visualizacoes.
+- Aplicar logica estatistica, SQL, machine learning ou regras de aplicacao quando fizer sentido.
+- Traduzir o resultado em insights, limitacoes e proximos passos.
 
-💡 O pré-processamento garante que os dados estejam limpos, consistentes e confiáveis para análises e modelos preditivos.
+---
 
-1️⃣ Objetivo
+## Data Storytelling | Narrativa dos Dados
 
-Garantir que os dados estejam limpos, consistentes e prontos para modelagem preditiva.
+### Chapter 1 - Data Understanding | Entendimento dos Dados
 
-Corrigir inconsistências.
+![Data Understanding | Entendimento dos Dados](assets/readme/project_overview.svg)
 
-Preencher valores ausentes com técnicas apropriadas (mediana e moda).
+**EN**
 
-Padronizar colunas e categorias.
+What the dataset or inputs represent, what each observation means and which business problem is being explored.
 
-💡 Preparar os dados dessa forma evita erros em cálculos, análises estatísticas e modelagem preditiva.
+**PT-BR**
 
-2️⃣ Bibliotecas utilizadas
+O que a base ou entradas representam, qual e o significado de cada observacao e qual problema de negocio esta sendo explorado.
 
-🐼 pandas: manipulação e limpeza de dados.
+**Insight | Insight**
+- EN: Visual evidence helps connect the technical result to a concrete decision or interpretation.
+- PT-BR: A evidencia visual ajuda a conectar o resultado tecnico a uma decisao ou interpretacao concreta.
 
-🔢 numpy: operações numéricas.
+### Chapter 2 - Exploratory Analysis | Analise Exploratoria
 
-📊 matplotlib & seaborn: visualização de dados e análise de padrões.
+**EN**
 
-🟦 missingno: análise de valores faltantes graficamente.
+The first visual layer reveals distributions, outliers, concentrations and relationships that guide the rest of the project.
 
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import missingno as msno
+**PT-BR**
 
-3️⃣ Carregamento da base e ajustes iniciais
-df = pd.read_csv("CHURN_TELECON_MOD08_TAREFA.csv", delimiter=';')
-df['Pagamento_Mensal'] = pd.to_numeric(df['Pagamento_Mensal'], errors='coerce')
-df['Total_Pago'] = pd.to_numeric(df['Total_Pago'], errors='coerce')
-df['Idoso'] = df['Idoso'].astype('int64')
+A primeira camada visual revela distribuicoes, outliers, concentracoes e relacoes que orientam o restante do projeto.
 
+**Insight | Insight**
+- EN: Visual evidence helps connect the technical result to a concrete decision or interpretation.
+- PT-BR: A evidencia visual ajuda a conectar o resultado tecnico a uma decisao ou interpretacao concreta.
 
-💡 errors='coerce' transforma valores inválidos em NaN, facilitando o tratamento posterior.
+### Chapter 3 - Modeling / Logic | Modelagem ou Logica
 
-4️⃣ Verificação de valores faltantes
-missing_percent = df.isnull().mean() * 100
-print(missing_percent)
+**EN**
 
-📊 Visualização de valores nulos
-fig, axes = plt.subplots(3, 1, figsize=(12, 18))
-msno.bar(df, ax=axes[0], fontsize=12, color='skyblue', sort='descending')
-axes[0].set_title("Percentual de valores faltantes por coluna", fontsize=16)
-msno.matrix(df, ax=axes[1], fontsize=12, sparkline=True)
-axes[1].set_title("Distribuição de valores faltantes (matriz)", fontsize=16)
-msno.heatmap(df, ax=axes[2], fontsize=12)
-axes[2].set_title("Correlação entre valores faltantes nas colunas", fontsize=16)
-plt.tight_layout()
-plt.show()
+The project translates data into decisions using statistical reasoning, rules, SQL logic, machine learning or an interactive workflow.
 
+**PT-BR**
 
-💡 Visualizações ajudam a decidir entre exclusão ou substituição de valores.
+O projeto transforma dados em decisoes usando raciocinio estatistico, regras, logica SQL, machine learning ou fluxo interativo.
 
-5️⃣ Tratamento de valores faltantes
-5.1 ❌ Exclusão de linhas essenciais
-df = df.dropna(subset=['Churn', 'Genero'])
+**Insight | Insight**
+- EN: Visual evidence helps connect the technical result to a concrete decision or interpretation.
+- PT-BR: A evidencia visual ajuda a conectar o resultado tecnico a uma decisao ou interpretacao concreta.
 
-5.2 ✅ Substituição de valores
-# Numéricas
-df['Pagamento_Mensal'].fillna(df['Pagamento_Mensal'].median(), inplace=True)
-df['Total_Pago'].fillna(df['Total_Pago'].median(), inplace=True)
+### Chapter 4 - Results and Interpretation | Resultados e Interpretacao
 
-# Categóricas
-df['Genero'].fillna(df['Genero'].mode()[0], inplace=True)
-df['Churn'].fillna(df['Churn'].mode()[0], inplace=True)
-df['Servico_Internet'].fillna(df['Servico_Internet'].mode()[0], inplace=True)
+**EN**
 
-# Outras colunas categóricas
-df.fillna(df.mode().iloc[0], inplace=True)
+The outputs are interpreted in practical language so the repository works as both technical evidence and portfolio storytelling.
 
-6️⃣ 📈 Visualizações após tratamento
+**PT-BR**
 
-Pagamento Mensal
+Os resultados sao interpretados em linguagem pratica para que o repositorio funcione como evidencia tecnica e narrativa de portfolio.
 
-sns.histplot(df['Pagamento_Mensal'], kde=True)
-plt.title("Distribuição de Pagamento Mensal após imputação")
-plt.show()
+**Insight | Insight**
+- EN: Visual evidence helps connect the technical result to a concrete decision or interpretation.
+- PT-BR: A evidencia visual ajuda a conectar o resultado tecnico a uma decisao ou interpretacao concreta.
 
+---
 
-Tipo de Internet
+## Repository Structure | Estrutura do Repositorio
 
-sns.countplot(x=df['Servico_Internet'], order=df['Servico_Internet'].value_counts().index)
-plt.title("Distribuição de Tipo de Internet após imputação")
-plt.show()
+**EN**
+- `README.md`: complete bilingual project documentation.
+- `*.ipynb`: notebooks with the analytical workflow, experiments or visual exploration.
+- `*.py`: scripts, helpers or application logic used by the project.
+- `assets/readme/` or chart folders: visual outputs used in this README.
 
-7️⃣ Padronização de valores inconsistentes
-# Internet
-df['Servico_Internet'] = df['Servico_Internet'].str.strip().str.lower()
-df['Servico_Internet'] = df['Servico_Internet'].replace({
-    'dsl': 'DSL',
-    'fiber optic': 'Fiber Optic',
-    'no': 'No'
-})
+**PT-BR**
+- `README.md`: documentacao completa e bilingue do projeto.
+- `*.ipynb`: notebooks com o fluxo analitico, experimentos ou exploracao visual.
+- `*.py`: scripts, auxiliares ou logica de aplicacao usada no projeto.
+- `assets/readme/` ou pastas de graficos: saidas visuais usadas neste README.
 
-# Todas as colunas categóricas
-cols_cat = df.select_dtypes(include='object').columns
-for col in cols_cat:
-    df[col] = df[col].astype(str).str.strip().str.title()
+---
 
-# Padronização adicional
-colunas_padronizar = ['Servico_Seguranca', 'Suporte_Tecnico', 'StreamingTV']
-df[colunas_padronizar] = df[colunas_padronizar].replace('No Internet Service', 'No')
+## How to Run | Como Executar
 
-8️⃣ 🏷️ Renomeação de colunas
-df = df.rename(columns={
-    'customerID': 'Cliente_ID',
-    'Genero': 'Genero',
-    'Idoso': 'Eh_Idoso',
-    'Casado': 'Eh_Casado',
-    'Dependents': 'Tem_Dependentes',
-    'Tempo_como_Cliente': 'Meses_Como_Cliente',
-    'PhoneService': 'Servico_Telefone',
-    'Servico_Internet': 'Tipo_Internet',
-    'Servico_Seguranca': 'Servico_Seguranca',
-    'Suporte_Tecnico': 'Suporte_Tecnico',
-    'StreamingTV': 'Servico_Streaming',
-    'Tipo_Contrato': 'Tipo_Contrato',
-    'PaymentMethod': 'Metodo_Pagamento',
-    'Pagamento_Mensal': 'Valor_Mensal',
-    'Total_Pago': 'Total_Pago',
-    'Churn': 'Churn'
-})
+**EN**
+1. Clone the repository.
+2. Create a virtual environment when the project uses Python.
+3. Install the required libraries listed in the notebook/script imports or in `requirements.txt`, when available.
+4. Run the notebooks or scripts from the repository root so relative paths keep working.
 
-9️⃣ ✅ Conferência final
-print(df.isnull().sum())
-print(df.info())
-print(df.head())
-print(df.describe(include='all'))
+**PT-BR**
+1. Clone o repositorio.
+2. Crie um ambiente virtual quando o projeto usar Python.
+3. Instale as bibliotecas indicadas nos imports dos notebooks/scripts ou em `requirements.txt`, quando existir.
+4. Execute notebooks ou scripts a partir da raiz do repositorio para manter os caminhos relativos funcionando.
 
-🔟 Observações finais
+---
 
-🧮 Mediana para colunas numéricas reduz efeito de outliers.
+## Key Takeaways | Principais Aprendizados
 
-🏷️ Moda para colunas categóricas preserva distribuição natural.
+**EN**
+- The repository is documented as an end-to-end analytical story, not only as code storage.
+- Visuals, when available, are placed directly in the README to make the result easier to inspect.
+- The bilingual format makes the project accessible to both English and Portuguese readers.
 
-❌ Exclusão de linhas apenas em colunas essenciais (Churn, Genero).
+**PT-BR**
+- O repositorio esta documentado como uma historia analitica ponta a ponta, nao apenas como armazenamento de codigo.
+- Os visuais, quando disponiveis, ficam diretamente no README para facilitar a leitura do resultado.
+- O formato bilingue torna o projeto acessivel para leitores em ingles e portugues.
 
-✅ Pré-processamento garante dados limpos e consistentes.
+---
 
-📊 Visualizações ajudam a justificar decisões de limpeza e substituição de valores faltantes.
+## Future Improvements | Proximos Passos
+
+- Add automated chart export to keep README visuals updated.
+- Add a `requirements.txt` or environment file when dependencies are needed.
+- Include data dictionary, modeling assumptions and evaluation metrics when applicable.
+- Adicionar exportacao automatica dos graficos para manter o README atualizado.
+- Adicionar `requirements.txt` ou arquivo de ambiente quando houver dependencias.
+- Incluir dicionario de dados, premissas de modelagem e metricas de avaliacao quando aplicavel.
+
+---
+
+## Author | Autor
+
+Henry
